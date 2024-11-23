@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
-
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 
 @Injectable()
@@ -36,6 +35,11 @@ export class SongsService {
     return this.prisma.songs.delete({
       where: { id },
     });
+  }
+  async freeSongs() {
+    return this.prisma.songs.findMany({
+      where : {price : 0}
+    })
   }
 }
 
