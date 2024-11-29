@@ -13,7 +13,7 @@ export class SongsService {
   }
 
   async findOne(id: number) {
-    return this.prisma.songs.findUnique({
+    return await this.prisma.songs.findUnique({
       where: { id },
     });
   }
